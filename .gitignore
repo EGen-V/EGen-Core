@@ -1,0 +1,11 @@
+.idea
+.ipynb_checkpoints
+.DS_Store
+egen_core.egg-info
+EGen_Core.egg-info
+build
+dist
+__pycache__
+!README.md
+!LICENSE
+*.md
