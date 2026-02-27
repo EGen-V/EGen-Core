@@ -43,7 +43,7 @@ try:
     )
     from flash_attn.bert_padding import unpad_input, pad_input
     flash_attn_v2_installed = True
-    print('>>>> Flash Attention installed')
+    logger.info('Flash Attention installed')
 except ImportError:
     flash_attn_v2_installed = False
     raise ImportError('Please install Flash Attention: `pip install flash-attn --no-build-isolation`')
@@ -51,7 +51,7 @@ except ImportError:
 try:
     from flash_attn.losses.cross_entropy import CrossEntropyLoss as xCrossEntropyLoss
     flash_xentropy_installed = True
-    print('>>>> xentropy installed')
+    logger.info('xentropy installed')
 except ImportError:
     flash_xentropy_installed = False
     raise ImportError('Please install xentropy kernels: `pip install git+https://github.com/HazyResearch/flash-attention.git#subdirectory=csrc/xentropy`')
@@ -60,7 +60,7 @@ except ImportError:
 try:
     from flash_attn.layers.rotary import apply_rotary_emb_func
     flash_rope_installed = True
-    print('>>>> Flash RoPE installed')
+    logger.info('Flash RoPE installed')
 except ImportError:
     flash_rope_installed = False
     raise ImportError('Please install RoPE kernels: `pip install git+https://github.com/HazyResearch/flash-attention.git#subdirectory=csrc/rotary`')
@@ -839,7 +839,6 @@ class LlamaForCausalLM(LlamaPreTrainedModel):
             logits = [F.linear(hidden_states, lm_head_slices[i]) for i in range(self.config.pretraining_tp)]
             logits = torch.cat(logits, dim=-1)
         else:
-            #logits = self.lm_head(hidden_states)
             if only_last_logit:
                  logits = self.lm_head(hidden_states[:,-1,:])
                  logits = logits.unsqueeze(1)

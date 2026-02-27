@@ -1,7 +1,7 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-from collections import defaultdict
+from collections import defaultdict  # noqa: F401 — kept for potential future use
 import copy
 import json
 import os
@@ -376,7 +376,7 @@ def get_accelerate_model(args, checkpoint_dir):
     logger.info(f'loading base model {args.model_name_or_path}...')
     compute_dtype = (torch.float16 if args.fp16 else (torch.bfloat16 if args.bf16 else torch.float32))
     if args.trust_remote_code:
-        print(f"trust remote code...")
+        logger.info("trust remote code...")
     from transformers import AutoConfig
 
 
@@ -391,15 +391,6 @@ def get_accelerate_model(args, checkpoint_dir):
         config = config,
         device_map='auto',
         max_memory=max_memory,
-        #quantization_config=BitsAndBytesConfig(
-        #    load_in_4bit=args.bits == 4,
-        #    load_in_8bit=args.bits == 8,
-        #    llm_int8_threshold=6.0,
-        #    llm_int8_has_fp16_weight=False,
-        #    bnb_4bit_compute_dtype=compute_dtype,
-        #    bnb_4bit_use_double_quant=args.double_quant,
-        #    bnb_4bit_quant_type=args.quant_type
-        #),
         torch_dtype=(torch.float32 if args.fp16 else (torch.bfloat16 if args.bf16 else torch.float32)),
         trust_remote_code=args.trust_remote_code,
     )
@@ -414,8 +405,8 @@ def get_accelerate_model(args, checkpoint_dir):
     setattr(model, 'is_parallelizable', True)
 
     model.config.torch_dtype=(torch.float32 if args.fp16 else (torch.bfloat16 if args.bf16 else torch.float32))
-    print(f"model.config.torch_dtype: {model.config.torch_dtype}")
-    print(f"model: {model}")
+    logger.info(f"model.config.torch_dtype: {model.config.torch_dtype}")
+    logger.debug(f"model: {model}")
 
     if not args.full_finetune:
         model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=args.gradient_checkpointing)
@@ -852,7 +843,7 @@ def train():
     total = 0
     for k, v in dtypes.items(): total+= v
     for k, v in dtypes.items():
-        logger.info(k, v, v/total)
+        logger.info(f"{k} {v} {v/total}")
 
     all_metrics = {"run_name": args.run_name}
     # Training

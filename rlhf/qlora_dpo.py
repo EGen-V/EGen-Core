@@ -1,7 +1,7 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-from collections import defaultdict
+from collections import defaultdict  # noqa: F401 — kept for potential future use
 import copy
 import json
 import os
@@ -255,9 +255,8 @@ class SampleGenerateCallback(transformers.TrainerCallback):
     def on_evaluate(self, args, state, control, **kwargs):
         logger.info("on_evaluate in SampleGenerateCallback...")
         sample_inputs = [
-            '如果一头大象站在一张脆弱的椅子上，椅子会破裂吗？',
-            '什么是机器学习？它有哪些应用场景？',
-            '如果细菌对抗生素产生了耐药性，那么为什么它们不能对所有抗生素都免疫？'
+            'What is the capital of Tunisia？',
+            'Where are Tunisia？'
         ]
         if "model" in kwargs:
             for sample_input in sample_inputs:
@@ -580,7 +579,7 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, args) -> Dict:
                     args.dataset_format = args.dataset_format if args.dataset_format else "hh-rlhf"
                     full_dataset = local_dataset(dataset_name)
                     return full_dataset
-                except:
+                except Exception:
                     raise ValueError(f"Error loading dataset from {dataset_name}")
             else:
                 try:
@@ -874,7 +873,7 @@ def train():
     total = 0
     for k, v in dtypes.items(): total+= v
     for k, v in dtypes.items():
-        logger.info(k, v, v/total)
+        logger.info(f"{k} {v} {v/total}")
 
     all_metrics = {"run_name": args.run_name}
     # Training
