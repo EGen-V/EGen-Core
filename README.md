@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://pypi.org/project/EGen-Core/"><img src="https://img.shields.io/pypi/v/EGen-Core?color=blue&logo=pypi" alt="PyPI"/></a>
-  <a href="https://github.com/ErebusTN/EGen-Core/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"/></a>
+  <a href="https://github.com/ErebusTN/EGen-Core/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache-green.svg" alt="License"/></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python"/></a>
 </p>
 
