@@ -3,7 +3,7 @@
 set -x -e
 
 run_id=$(date +%s)
-echo "RUN ID: $run_ts"
+echo "RUN ID: $run_id"
 
 echo "START TIME: $(date)"
 
