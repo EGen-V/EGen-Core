@@ -22,6 +22,8 @@
 
 ---
 
+<div align="center">
+
 [**Quick Start**](#-quick-start) |
 [**Features**](#-features) |
 [**Installation**](#-installation) |
@@ -30,6 +32,8 @@
 [**API Reference**](#-api-reference) |
 [**FAQ**](#-faq) |
 [**Contributing**](#-contributing)
+
+</div>
 
 ---
 
