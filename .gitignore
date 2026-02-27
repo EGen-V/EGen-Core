@@ -6,6 +6,4 @@ EGen_Core.egg-info
 build
 dist
 __pycache__
-!README.md
-!LICENSE
-*.md
+CODE_QUALITY_REPORT.md
