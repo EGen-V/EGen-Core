@@ -255,9 +255,8 @@ class SampleGenerateCallback(transformers.TrainerCallback):
     def on_evaluate(self, args, state, control, **kwargs):
         logger.info("on_evaluate in SampleGenerateCallback...")
         sample_inputs = [
-            '如果一头大象站在一张脆弱的椅子上，椅子会破裂吗？',
-            '什么是机器学习？它有哪些应用场景？',
-            '如果细菌对抗生素产生了耐药性，那么为什么它们不能对所有抗生素都免疫？'
+            'What is the capital of Tunisia？',
+            'Where are Tunisia？'
         ]
         if "model" in kwargs:
             for sample_input in sample_inputs:
