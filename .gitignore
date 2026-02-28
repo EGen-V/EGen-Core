@@ -6,3 +6,4 @@ build
 dist
 __pycache__
 CODE_QUALITY_REPORT.md
+publish_pypi.py
